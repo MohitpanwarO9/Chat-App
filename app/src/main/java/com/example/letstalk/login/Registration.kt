@@ -2,7 +2,7 @@ package com.example.letstalk.login
 
 import android.app.Activity
 import android.content.Intent
-import android.graphics.drawable.BitmapDrawable
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
@@ -11,17 +11,17 @@ import android.widget.Toast
 import com.example.letstalk.MainActivity
 import com.example.letstalk.R
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.storage.FirebaseStorage
 import kotlinx.android.synthetic.main.activity_registration.*
-import kotlin.math.log
+import java.util.*
 
 class Registration : AppCompatActivity() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_registration)
-
-        //init auth Firebase
+        
 
         //create user account
         register_button.setOnClickListener {
@@ -41,16 +41,19 @@ class Registration : AppCompatActivity() {
 
     }
 
+     private var selectedImgUri:Uri?=null
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         if(requestCode==0 && resultCode== Activity.RESULT_OK && data!=null){
-            Log.d("select","photo selected")
-            val uri=data.data
-            val bitmap=MediaStore.Images.Media.getBitmap(contentResolver,uri)
-            val bitmapDrawable=BitmapDrawable(bitmap)
-            Bt_selectImage_regist.setBackgroundDrawable(bitmapDrawable)
+            Log.d("RegisterActivity","photo selected")
+            selectedImgUri=data.data
+            val bitmap=MediaStore.Images.Media.getBitmap(contentResolver,selectedImgUri)
+             Bt_selectImage_regist.alpha=0f
+            selected_img_regist.setImageBitmap(bitmap)
+
         }else{
-            Log.d("select","photo not selected")
+            Log.d("RegisterActivity","photo not selected")
         }
     }
 
@@ -67,20 +70,59 @@ class Registration : AppCompatActivity() {
                 .addOnCompleteListener {
                     if (it.isSuccessful) {
 
-                        val user = FirebaseAuth.getInstance().currentUser
-                        val intent=Intent(this,MainActivity::class.java)
-                        intent.putExtra("user",user)
-                        startActivity(intent)
+                        Log.d("RegisterActivity","save image to firebase storage")
+                        uploadImageToFirebase()
+
+                        startActivity(Intent(this,MainActivity::class.java))
                     }
                     else
                     {
-                        Toast.makeText(this, "Fail to login", Toast.LENGTH_LONG).show()
+                        Toast.makeText(this, "Fail to Register", Toast.LENGTH_LONG).show()
                          return@addOnCompleteListener
                     }
                 }
         }
 
 
+        private fun uploadImageToFirebase(){
+            if(selectedImgUri==null) return
+
+            val filename=UUID.randomUUID().toString()
+            val ref =FirebaseStorage.getInstance().getReference("/image/$filename")
+
+            ref.putFile(selectedImgUri!!)
+                .addOnSuccessListener {
+                    Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
+
+                    ref.downloadUrl.addOnSuccessListener {
+                        Log.d("RegisterActivity","$it")
+
+                        saveToFirebase(it.toString())
+                        }
+                    }
+
+                .addOnFailureListener {
+                    Toast.makeText(this, "fail to upload ", Toast.LENGTH_SHORT).show()
+                }
+
+        }
+
+        private fun saveToFirebase(profileURl:String){
+            val uid=FirebaseAuth.getInstance().uid?:""
+            val ref=FirebaseDatabase.getInstance().getReference("/User/$uid")
+
+            val user=User(uid,Ed_Username_regist.text.toString(),Ed_Email_regist.text.toString(),profileURl)
+            ref.setValue(user)
+                .addOnSuccessListener {
+                    Log.d("RegisterActivity","finially save the user")
+                }
+        }
+
 }
+
+class User(val uid: String,val username:String ,val email:String , val profileImageUrl:String)
+
+
+
 
 
