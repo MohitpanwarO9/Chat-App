@@ -125,7 +125,9 @@ class Registration : AppCompatActivity() {
 
 }
 
-class User(val uid: String,val username:String ,val email:String , val profileImageUrl:String)
+class User(val uid: String,val username:String ,val email:String , val profileImageUrl:String){
+    constructor():this("","","","")
+}
 
 
 
