@@ -10,6 +10,7 @@ import android.util.Log
 import android.widget.Toast
 import com.example.letstalk.MainActivity
 import com.example.letstalk.R
+import com.example.letstalk.modelUser.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -111,7 +112,7 @@ class Registration : AppCompatActivity() {
             val uid=FirebaseAuth.getInstance().uid?:""
             val ref=FirebaseDatabase.getInstance().getReference("/User/$uid")
 
-            val user=User(uid,Ed_Username_regist.text.toString(),Ed_Email_regist.text.toString(),profileURl)
+            val user= User(uid,Ed_Username_regist.text.toString(),Ed_Email_regist.text.toString(),profileURl)
             ref.setValue(user)
                 .addOnSuccessListener {
                     Log.d("RegisterActivity","finially save the user")
@@ -123,10 +124,6 @@ class Registration : AppCompatActivity() {
                 }
         }
 
-}
-
-class User(val uid: String,val username:String ,val email:String , val profileImageUrl:String){
-    constructor():this("","","","")
 }
 
 

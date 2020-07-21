@@ -1,10 +1,12 @@
 package com.example.letstalk.messages
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.example.letstalk.R
-import com.example.letstalk.login.User
+import com.example.letstalk.modelUser.User
+import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -40,9 +42,16 @@ class NewMessage : AppCompatActivity() {
                 val adapter=GroupAdapter<GroupieViewHolder>()
                 snapshot.children.forEach{
                     val user=it.getValue(User::class.java)
-                    if(user!=null){
+                    if(user!=null && user.uid!=FirebaseAuth.getInstance().uid){
                         adapter.add(UserItem(user))
                     }
+                }
+                adapter.setOnItemClickListener { item, view ->
+                    val userItem =item as UserItem
+                    val intent= Intent(view.context,MainChat::class.java)
+                    intent.putExtra("User_Key",userItem.user)
+                    startActivity(intent)
+                    finish()
                 }
                 recycleView_newMessage.adapter=adapter
             }
@@ -52,7 +61,7 @@ class NewMessage : AppCompatActivity() {
 
 }
 
-class UserItem(val user:User): Item<GroupieViewHolder>(){
+class UserItem( val user:User): Item<GroupieViewHolder>(){
 
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
         viewHolder.itemView.username_newMessage.text=user.username
