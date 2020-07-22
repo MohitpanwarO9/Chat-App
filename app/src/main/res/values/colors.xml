@@ -9,4 +9,5 @@
     <color name="chatStart">#666699</color>
     <color name="chatEnd">#ff9966</color>
     <color name="lightGreen"> #00cc99</color>
+    <color name="gray">#E6E4E4</color>
 </resources>

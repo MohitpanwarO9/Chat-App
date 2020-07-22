@@ -22,14 +22,6 @@ class NewMessage : AppCompatActivity() {
         setContentView(R.layout.activity_new_message)
 
         supportActionBar?.title="select user"
-//        val adapter=GroupAdapter<GroupieViewHolder>()
-//
-//        adapter.add(UserItem())
-//        adapter.add(UserItem())
-//        adapter.add(UserItem())
-//        adapter.add(UserItem())
-//
-//        recycleView_newMessage.adapter=adapter
         fetchUser()
     }
 

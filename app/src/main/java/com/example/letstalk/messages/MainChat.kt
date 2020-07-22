@@ -24,7 +24,7 @@ class MainChat : AppCompatActivity() {
         const val Tag="mainChat"
     }
     private val adapter=GroupAdapter<GroupieViewHolder>()
-
+    var userIn:User?=null
     override fun onCreate(savedInstanceState: Bundle?) {
 
         super.onCreate(savedInstanceState)
@@ -33,7 +33,7 @@ class MainChat : AppCompatActivity() {
         recycleView_Mainchat.adapter=adapter
 
         val bundle:Bundle?=intent.extras
-         val userIn=bundle!!.getParcelable<User>("User_Key")
+          userIn=bundle!!.getParcelable<User>("User_Key")
 
         supportActionBar?.title=userIn!!.username
 
@@ -49,24 +49,15 @@ class MainChat : AppCompatActivity() {
         val ref=FirebaseDatabase.getInstance().getReference("/messages")
         ref.addChildEventListener(object :ChildEventListener{
             override fun onCancelled(error: DatabaseError) {
-
             }
-
             override fun onChildMoved(snapshot: DataSnapshot, previousChildName: String?) {
-
             }
-
             override fun onChildChanged(snapshot: DataSnapshot, previousChildName: String?) {
-
             }
 
             override fun onChildAdded(snapshot: DataSnapshot, previousChildName: String?) {
                 val chatMessage=snapshot.getValue(ChatMessage::class.java)
-
-                val bundle:Bundle?=intent.extras
-                val userIn=bundle!!.getParcelable<User>("User_Key")
                 val toId=userIn!!.uid
-
                 if(chatMessage!=null){
 
                     if(chatMessage.fromId==toId && chatMessage.toId==FirebaseAuth.getInstance().uid){
@@ -77,21 +68,18 @@ class MainChat : AppCompatActivity() {
                     }
 
                 }
+                recycleView_Mainchat.scrollToPosition(adapter.itemCount -1)
             }
-
             override fun onChildRemoved(snapshot: DataSnapshot) {
-
             }
-
         })
     }
 
     private fun sendMessage(){
         val text=enterMessage_mainChat.text.toString()
-        enterMessage_mainChat.text=null
+
         val fromId=FirebaseAuth.getInstance().uid
-        val bundle:Bundle?=intent.extras
-        val userIn=bundle!!.getParcelable<User>("User_Key")
+
         val toId=userIn!!.uid
         val reference=FirebaseDatabase.getInstance().getReference("/messages").push()
 
@@ -100,8 +88,15 @@ class MainChat : AppCompatActivity() {
         reference.setValue(chatMessage)
             .addOnSuccessListener {
                 Log.d(Tag,"message stored in fireBase")
-
+                enterMessage_mainChat.text.clear()
+                recycleView_Mainchat.scrollToPosition(adapter.itemCount -1)
             }
+
+        val latestMessageRef=FirebaseDatabase.getInstance().getReference("/latest-Message/$fromId/$toId")
+        latestMessageRef.setValue(chatMessage)
+
+        val latestMessageToRef=FirebaseDatabase.getInstance().getReference("/latest-Message/$toId/$fromId")
+        latestMessageToRef.setValue(chatMessage)
     }
 
 }
