@@ -4,6 +4,7 @@ package com.example.letstalk.messages
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.letstalk.R
 import com.example.letstalk.modelUser.User
 import com.google.firebase.auth.FirebaseAuth
@@ -22,6 +23,7 @@ class NewMessage : AppCompatActivity() {
         setContentView(R.layout.activity_new_message)
 
         supportActionBar?.title="select user"
+        recycleView_newMessage.addItemDecoration(DividerItemDecoration(this,DividerItemDecoration.VERTICAL))
         fetchUser()
     }
 
@@ -46,6 +48,7 @@ class NewMessage : AppCompatActivity() {
                     finish()
                 }
                 recycleView_newMessage.adapter=adapter
+
             }
 
         })

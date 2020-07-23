@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="4dp"
-    android:background="@color/white"
+    android:background="@drawable/round_text_field"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <de.hdodenhof.circleimageview.CircleImageView
@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
         app:civ_border_width="2dp"
-        android:src="@drawable/def_avt"
+        tools:src="@drawable/def_avt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,7 +24,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginTop="24dp"
-        android:text="Username"
+        tools:text="Username"
         android:textColor="@color/black"
         android:textSize="18dp"
         android:textStyle="bold"
@@ -39,7 +39,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginEnd="8dp"
         android:layout_marginBottom="16dp"
-        android:text="Latest message to show"
+        tools:text="Latest message to show"
         android:textSize="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

@@ -6,11 +6,13 @@ import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
 import com.example.letstalk.login.LoginActivity
+import com.example.letstalk.messages.MainChat
 import com.example.letstalk.messages.NewMessage
 import com.example.letstalk.modelUser.ChatMessage
 import com.example.letstalk.modelUser.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
+import com.squareup.picasso.Picasso
 import com.xwray.groupie.GroupAdapter
 import com.xwray.groupie.GroupieViewHolder
 import com.xwray.groupie.Item
@@ -37,6 +39,12 @@ class MainActivity : AppCompatActivity() {
         fetchCurrentUser()
         listenForLatestMessages()
 
+        adapter.setOnItemClickListener { item, view ->
+            val intent=Intent(this,MainChat::class.java)
+            val row =item as WithUser
+            intent.putExtra("User_Key",row.ChatUserPartner)
+            startActivity(intent)
+        }
 
     }
     val latestMessagesMap=HashMap<String,ChatMessage>()
@@ -116,12 +124,31 @@ class MainActivity : AppCompatActivity() {
 
 }
 
+
+
 class WithUser(private val chatIMessage: ChatMessage):Item<GroupieViewHolder>(){
-
+    var ChatUserPartner:User?=null
     override fun bind(viewHolder: GroupieViewHolder, position: Int) {
-
         viewHolder.itemView.latest_message_mainActivity.text=chatIMessage.text
-        //viewHolder.itemView.Username_mainActivity.text=
+
+        var chatPartnerId:String = if(chatIMessage.fromId==FirebaseAuth.getInstance().uid) {
+            chatIMessage.toId
+        }else{
+            chatIMessage.fromId
+        }
+
+        val ref=FirebaseDatabase.getInstance().getReference("/User/$chatPartnerId")
+            ref.addListenerForSingleValueEvent(object : ValueEventListener{
+                override fun onCancelled(error: DatabaseError) {
+                }
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    ChatUserPartner=snapshot.getValue(User::class.java)
+                    viewHolder.itemView.Username_mainActivity.text=ChatUserPartner!!.username
+                    Picasso.get().load(ChatUserPartner!!.profileImageUrl).into(viewHolder.itemView.circleImageView)
+                }
+
+            })
+
     }
     override fun getLayout(): Int {
 
