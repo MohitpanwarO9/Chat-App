@@ -21,7 +21,8 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".MainActivity" />
         </activity>
-        <activity android:name=".login.LoginActivity" />
+        <activity android:name=".login.LoginActivity"
+            android:theme="@style/Theme.AppCompat.NoActionBar"/>
         <activity android:name=".login.Registration" />
         <activity android:name=".MainActivity">
             <intent-filter>

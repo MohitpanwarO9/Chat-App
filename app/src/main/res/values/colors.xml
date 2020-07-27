@@ -10,4 +10,9 @@
     <color name="chatEnd">#ff9966</color>
     <color name="lightGreen"> #00cc99</color>
     <color name="gray">#E6E4E4</color>
+    <color name="heading">#3272d1</color>
+    <color name="linerLogin">#e8af58</color>
+    <color name="red">#f72c25</color>
+    <color name="button_gr">#6fcc3d</color>
+    <color name="startcolor">#cf92f7</color>
 </resources>

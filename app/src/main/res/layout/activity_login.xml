@@ -4,54 +4,117 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".login.LoginActivity">
+    tools:context=".login.LoginActivity"
+    android:background="@drawable/background_login">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="382dp"
+        android:layout_height="294dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginBottom="25dp"
+        android:background="@drawable/liner_layout_login"
+        android:gravity="center"
+        android:orientation="vertical"
+        app:layout_constraintBottom_toTopOf="@+id/back_register_editText"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.008"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView">
+
+
+        <TextView
+            android:id="@+id/heading_text"
+            android:layout_width="185dp"
+            android:layout_height="66dp"
+            android:layout_marginBottom="18dp"
+            android:gravity="center"
+            android:text="@string/loginLinerHeading"
+            android:textColor="@color/white"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <EditText
+            android:id="@+id/Ed_userEmail_login"
+            android:layout_width="249dp"
+            android:layout_height="39dp"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/text_field_login"
+            android:ems="10"
+            android:hint="@string/Email"
+            android:inputType="textEmailAddress"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:textColorHint="#777171"
+            android:autofillHints=""/>
+
+        <EditText
+            android:id="@+id/Ed_userPassword_login"
+            android:layout_width="249dp"
+            android:layout_height="39dp"
+            android:textColorHint="#787373"
+            android:layout_marginBottom="12dp"
+            android:background="@drawable/text_field_login"
+            android:ems="10"
+            android:textColor="@color/black"
+            android:hint="@string/password"
+            android:inputType="textPassword"
+            android:paddingLeft="12dp"
+            android:paddingRight="12dp"
+            android:textSize="18sp"
+            android:autofillHints="" />
+
+        <Button
+            android:id="@+id/Bt_login"
+            android:layout_width="105dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:background="@drawable/heading2_login"
+            android:text="@string/button_login"
+            android:textColor="@color/white"
+            android:textSize="17sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent" />
+
+    </LinearLayout>
 
     <TextView
         android:id="@+id/back_register_editText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="162dp"
+        android:layout_marginTop="25dp"
         android:layout_marginEnd="192dp"
-        android:layout_marginBottom="192dp"
-        android:text="New user please Register"
-        android:textSize="18dp"
+        android:layout_marginBottom="132dp"
+        android:text="@string/newUserText"
+        android:textColor="@color/white"
+        android:textSize="18sp"
+        android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.353"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintHorizontal_bias="0.407"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
-    <EditText
-        android:id="@+id/Ed_userEmail_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="169dp"
-        android:ems="10"
-        android:hint="Email"
-        android:inputType="textPersonName"
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="409dp"
+        android:layout_height="71dp"
+        android:layout_marginStart="16dp"
+        android:layout_marginEnd="16dp"
+        android:background="@drawable/login_heading_batchit"
+        android:gravity="center_horizontal|bottom"
+        android:text="@string/loginHeading"
+        android:textColor="@color/white"
+        android:textSize="37sp"
+        android:textStyle="bold"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-
-    <EditText
-        android:id="@+id/Ed_userPassword_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="30dp"
-        android:ems="10"
-        android:hint="Password"
-        android:inputType="textPassword"
-        app:layout_constraintEnd_toEndOf="@+id/Ed_userEmail_login"
-        app:layout_constraintStart_toStartOf="@+id/Ed_userEmail_login"
-        app:layout_constraintTop_toBottomOf="@+id/Ed_userEmail_login" />
-
-    <Button
-        android:id="@+id/Bt_login"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="17dp"
-        android:text="Login"
-        app:layout_constraintEnd_toEndOf="@+id/Ed_userPassword_login"
-        app:layout_constraintStart_toStartOf="@+id/Ed_userPassword_login"
-        app:layout_constraintTop_toBottomOf="@+id/Ed_userPassword_login" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

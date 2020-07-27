@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_marginTop="4dp"
+    android:layout_marginTop="8dp"
     android:background="@drawable/round_text_field"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
@@ -13,7 +13,7 @@
         android:layout_height="60dp"
         android:layout_marginStart="24dp"
         app:civ_border_width="2dp"
-        tools:src="@drawable/def_avt"
+        android:src="@drawable/def_avt"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
