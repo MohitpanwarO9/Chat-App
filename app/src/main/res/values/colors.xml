@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <color name="colorPrimary">#6200EE</color>
+    <color name="colorPrimary">#3272d1</color>
     <color name="colorPrimaryDark">#3700B3</color>
     <color name="colorAccent">#03DAC5</color>
     <color name="green">#306007</color>
@@ -15,4 +15,8 @@
     <color name="red">#f72c25</color>
     <color name="button_gr">#6fcc3d</color>
     <color name="startcolor">#cf92f7</color>
+    <color name="tryOne">#adf7f6</color>
+    <color name="login_blue_d">#0099ff</color>
+    <color name="login_d_backdrounf">#494343</color>
+    <color name="second_wav">#4db8ff</color>
 </resources>
