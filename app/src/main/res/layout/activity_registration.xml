@@ -1,70 +1,101 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/white">
 
+
+    <view
+        android:id="@+id/view5"
+        class="androidx.appcompat.widget.AppCompatImageView"
+        android:layout_width="match_parent"
+        android:layout_height="300dp"
+        android:background="@color/login_blue_d"
+        app:layout_constraintBottom_toTopOf="@+id/view6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <view
         android:id="@+id/view3"
         class="androidx.appcompat.widget.AppCompatImageView"
         android:layout_width="match_parent"
-        android:layout_height="355dp"
-        android:background="@color/login_blue_d"
-        app:layout_constraintBottom_toTopOf="@+id/Ed_Username_regist"
+        android:layout_height="80dp"
+        android:background="@color/second_wav"
+        app:layout_constraintBottom_toTopOf="@+id/view4"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:text="Create Account"
+        android:textColor="@color/white"
+        android:textSize="35sp"
+        android:paddingLeft="22dp"
+        android:paddingRight="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <view
         android:id="@+id/view4"
         class="androidx.appcompat.widget.AppCompatImageView"
         android:layout_width="match_parent"
-        android:layout_height="120dp"
-        android:background="@color/second_wav"
-        app:layout_constraintBottom_toBottomOf="@+id/textView4"
+        android:layout_height="60dp"
+        android:background="@drawable/ic_second_wave_rep"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view3" />
+
+    <Button
+        android:id="@+id/Bt_selectImage_regist"
+        android:layout_width="137dp"
+        android:layout_height="135dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/for_button"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view4" />
+
+    <TextView
+        android:id="@+id/textView"
+        android:layout_width="164dp"
+        android:layout_height="137dp"
+        android:layout_marginStart="60dp"
+        android:layout_marginTop="8dp"
+        android:text="New User ? Please Register"
+        android:textColor="@color/white"
+        android:textSize="25sp"
+        android:textStyle="normal"
+        app:layout_constraintBottom_toBottomOf="@+id/view5"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0" />
+        app:layout_constraintStart_toEndOf="@+id/Bt_selectImage_regist"
+        app:layout_constraintTop_toBottomOf="@+id/view4"
+        app:layout_constraintVertical_bias="1.0" />
 
-    <ImageView
-        android:id="@+id/imageView4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        app:layout_constraintBottom_toTopOf="@+id/textView6"
+    <view
+        android:id="@+id/view6"
+        class="androidx.appcompat.widget.AppCompatImageView"
+        android:layout_width="match_parent"
+        android:layout_height="60dp"
+        android:layout_marginBottom="16dp"
+        android:background="@drawable/wave_register"
+        app:layout_constraintBottom_toTopOf="@+id/Ed_Username_regist"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/ic_second_wave_rep" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="238dp"
-        android:layout_marginBottom="185dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/view3"
-        app:layout_constraintVertical_bias="0.0"
-        app:srcCompat="@drawable/wave_register" />
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
 
     <EditText
         android:id="@+id/Ed_Username_regist"
         android:layout_width="297dp"
         android:layout_height="46dp"
-        android:layout_marginTop="100dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/login_d_text"
         android:drawableStart="@drawable/ic_baseline_account_circle_24"
         android:drawablePadding="12dp"
@@ -74,17 +105,15 @@
         android:padding="12dp"
         android:textColor="@color/black"
         android:textColorHint="#8C8686"
-        app:layout_constraintBottom_toTopOf="@+id/Ed_Email_regist"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+        app:layout_constraintTop_toBottomOf="@+id/view6" />
 
     <EditText
         android:id="@+id/Ed_Email_regist"
         android:layout_width="297dp"
         android:layout_height="46dp"
         android:layout_marginTop="8dp"
-        android:layout_marginBottom="8dp"
         android:background="@drawable/login_d_text"
         android:drawableStart="@drawable/ic_email"
         android:drawablePadding="12dp"
@@ -94,9 +123,7 @@
         android:padding="12dp"
         android:textColor="@color/black"
         android:textColorHint="#FF8C8686"
-        app:layout_constraintBottom_toTopOf="@+id/Ed_Password_regist"
         app:layout_constraintEnd_toEndOf="@+id/Ed_Username_regist"
-        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/Ed_Username_regist"
         app:layout_constraintTop_toBottomOf="@+id/Ed_Username_regist" />
 
@@ -114,8 +141,8 @@
         android:padding="12dp"
         android:textColor="@color/black"
         android:textColorHint="#FF8C8686"
-        app:layout_constraintBottom_toTopOf="@+id/register_button"
         app:layout_constraintEnd_toEndOf="@+id/Ed_Email_regist"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="@+id/Ed_Email_regist"
         app:layout_constraintTop_toBottomOf="@+id/Ed_Email_regist" />
 
@@ -123,67 +150,39 @@
         android:id="@+id/register_button"
         android:layout_width="297dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="22dp"
-        android:layout_marginBottom="28dp"
+        android:layout_marginTop="8dp"
         android:background="@drawable/login_d_button"
         android:text="Register"
         android:textColor="@color/white"
         android:textSize="17dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toTopOf="@+id/Already_have"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/Ed_Password_regist"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/Ed_Password_regist"
         app:layout_constraintTop_toBottomOf="@+id/Ed_Password_regist" />
 
-
-    <TextView
-        android:id="@+id/textView4"
-        android:layout_width="378dp"
-        android:layout_height="113dp"
-        android:text="Create Account"
-        android:textColor="@color/white"
-        android:textSize="41sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="1.0"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.107" />
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/selected_img_regist"
+        android:layout_width="137dp"
+        android:layout_height="135dp"
+        app:layout_constraintBottom_toBottomOf="@+id/Bt_selectImage_regist"
+        app:layout_constraintEnd_toEndOf="@+id/Bt_selectImage_regist"
+        app:layout_constraintStart_toStartOf="@+id/Bt_selectImage_regist"
+        app:layout_constraintTop_toTopOf="@+id/Bt_selectImage_regist" />
 
     <TextView
         android:id="@+id/Already_have"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="16dp"
+        android:layout_marginTop="8dp"
         android:text="Already have account ? "
         android:textColor="@color/login_blue_d"
         android:textSize="19sp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/register_button" />
-
-    <Button
-        android:id="@+id/Bt_selectImage_regist"
-        android:layout_width="137dp"
-        android:layout_height="135dp"
-        android:background="@drawable/for_button"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.05"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/textView4"
-        app:layout_constraintVertical_bias="0.221" />
-
-    <de.hdodenhof.circleimageview.CircleImageView
-        android:id="@+id/selected_img_regist"
-        android:layout_width="150dp"
-        android:layout_height="150dp"
-        app:layout_constraintBottom_toBottomOf="@+id/Bt_selectImage_regist"
-        app:layout_constraintEnd_toEndOf="@+id/Bt_selectImage_regist"
-        app:layout_constraintStart_toStartOf="@+id/Bt_selectImage_regist"
-        app:layout_constraintTop_toTopOf="@+id/Bt_selectImage_regist" />
 
     <TextView
         android:id="@+id/textView6"
@@ -193,27 +192,10 @@
         android:textColor="@color/white"
         android:textSize="19dp"
         android:textStyle="bold"
-        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Bt_selectImage_regist"
-        app:layout_constraintVertical_bias="0.0" />
-
-    <TextView
-        android:id="@+id/textView"
-        android:layout_width="164dp"
-        android:layout_height="137dp"
-        android:text="New User ? Please Register"
-        android:textColor="@color/white"
-        android:textSize="28sp"
-        android:textStyle="normal"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.93"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.336" />
+        app:layout_constraintTop_toBottomOf="@+id/Bt_selectImage_regist" />
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

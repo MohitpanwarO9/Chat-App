@@ -2,12 +2,15 @@ package com.example.letstalk.login
 
 import android.app.Activity
 import android.content.Intent
+import android.content.pm.PackageManager
 import android.net.Uri
+import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
 import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import com.example.letstalk.MainActivity
 import com.example.letstalk.R
 import com.example.letstalk.modelUser.User
@@ -18,6 +21,8 @@ import kotlinx.android.synthetic.main.activity_registration.*
 import java.util.*
 
 class Registration : AppCompatActivity() {
+
+    private val readImage=569
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -35,11 +40,16 @@ class Registration : AppCompatActivity() {
         }
 
         Bt_selectImage_regist.setOnClickListener {
-            val intent=Intent(Intent.ACTION_PICK)
-            intent.type="image/*"
-            startActivityForResult(intent,0)
+            checkPer()
         }
 
+    }
+
+    private fun fetchFromGallery(){
+
+        val intent=Intent(Intent.ACTION_PICK)
+        intent.type="image/*"
+        startActivityForResult(intent,0)
     }
 
      private var selectedImgUri:Uri?=null
@@ -121,6 +131,38 @@ class Registration : AppCompatActivity() {
                     startActivity(intent)
                 }
         }
+
+
+    private fun checkPer(){
+
+        if(Build.VERSION.SDK_INT>=23){
+                if(ActivityCompat.checkSelfPermission(this,android.Manifest.permission.READ_EXTERNAL_STORAGE)!=
+                        PackageManager.PERMISSION_GRANTED){
+
+                    requestPermissions(arrayOf(android.Manifest.permission.READ_EXTERNAL_STORAGE),readImage)
+                    return
+                }
+            fetchFromGallery()
+        }
+
+    }
+
+    override fun onRequestPermissionsResult(
+        requestCode: Int,
+        permissions: Array<out String>,
+        grantResults: IntArray
+    ) {
+        when(requestCode){
+                readImage->{
+                    if(grantResults[0]==PackageManager.PERMISSION_GRANTED){
+                        fetchFromGallery()
+                    }else{
+                        Toast.makeText(this, "PERMISSION IS NOT GRANTED", Toast.LENGTH_SHORT).show()
+                    }
+                }
+                else->super.onRequestPermissionsResult(requestCode, permissions, grantResults)
+        }
+    }
 
 }
 
