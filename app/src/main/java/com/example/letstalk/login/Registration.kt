@@ -73,8 +73,6 @@ class Registration : AppCompatActivity() {
 
                         Log.d("RegisterActivity","save image to firebase storage")
                         uploadImageToFirebase()
-
-                        startActivity(Intent(this,MainActivity::class.java))
                     }
                     else
                     {
