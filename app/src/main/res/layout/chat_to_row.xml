@@ -12,9 +12,9 @@
         android:layout_height="wrap_content"
         android:text="Sandy is makeing this app which is user to chat we the persons"
         android:layout_marginTop="3dp"
-        android:padding="16dp"
+        android:padding="18dp"
         android:layout_marginRight="7dp"
-        android:textColor="@color/black"
+        android:textColor="@color/white"
         android:background="@drawable/round_text_chatfield"
         android:maxWidth="260dp"
         android:textSize="16dp"/>

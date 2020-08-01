@@ -62,7 +62,7 @@
     <EditText
         android:id="@+id/Ed_Username_regist"
         android:layout_width="297dp"
-        android:layout_height="51dp"
+        android:layout_height="46dp"
         android:layout_marginTop="100dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/login_d_text"
@@ -70,9 +70,9 @@
         android:drawablePadding="12dp"
         android:ems="10"
         android:hint="Name"
-        android:textColor="@color/black"
         android:inputType="textPersonName"
         android:padding="12dp"
+        android:textColor="@color/black"
         android:textColorHint="#8C8686"
         app:layout_constraintBottom_toTopOf="@+id/Ed_Email_regist"
         app:layout_constraintEnd_toEndOf="parent"
@@ -82,7 +82,7 @@
     <EditText
         android:id="@+id/Ed_Email_regist"
         android:layout_width="297dp"
-        android:layout_height="51dp"
+        android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:layout_marginBottom="8dp"
         android:background="@drawable/login_d_text"
@@ -90,28 +90,29 @@
         android:drawablePadding="12dp"
         android:ems="10"
         android:hint="Email"
-        android:textColor="@color/black"
         android:inputType="textEmailAddress"
         android:padding="12dp"
+        android:textColor="@color/black"
         android:textColorHint="#FF8C8686"
         app:layout_constraintBottom_toTopOf="@+id/Ed_Password_regist"
         app:layout_constraintEnd_toEndOf="@+id/Ed_Username_regist"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="@+id/Ed_Username_regist"
         app:layout_constraintTop_toBottomOf="@+id/Ed_Username_regist" />
 
     <EditText
         android:id="@+id/Ed_Password_regist"
         android:layout_width="297dp"
-        android:layout_height="51dp"
+        android:layout_height="46dp"
         android:layout_marginTop="8dp"
         android:background="@drawable/login_d_text"
         android:drawableStart="@drawable/ic_password"
         android:drawablePadding="12dp"
         android:ems="10"
         android:hint="Password"
-        android:textColor="@color/black"
         android:inputType="textPassword"
         android:padding="12dp"
+        android:textColor="@color/black"
         android:textColorHint="#FF8C8686"
         app:layout_constraintBottom_toTopOf="@+id/register_button"
         app:layout_constraintEnd_toEndOf="@+id/Ed_Email_regist"
@@ -196,8 +197,8 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.122"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/Bt_selectImage_regist"
-        app:layout_constraintVertical_bias="0.276" />
+        app:layout_constraintTop_toBottomOf="@+id/Bt_selectImage_regist"
+        app:layout_constraintVertical_bias="0.0" />
 
     <TextView
         android:id="@+id/textView"

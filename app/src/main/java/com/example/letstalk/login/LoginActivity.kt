@@ -40,6 +40,7 @@ class LoginActivity : AppCompatActivity() {
                     val user = FirebaseAuth.getInstance().currentUser
                     val intent=Intent(this, MainActivity::class.java)
                     intent.putExtra("user",user)
+                    intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 }
                 else
