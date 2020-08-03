@@ -5,8 +5,11 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import android.view.View
+import android.widget.Toast
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.letstalk.login.LoginActivity
+import com.example.letstalk.login.Registration
 import com.example.letstalk.messages.MainChat
 import com.example.letstalk.messages.NewMessage
 import com.example.letstalk.modelUser.ChatMessage
@@ -102,8 +105,17 @@ class MainActivity : AppCompatActivity() {
     override fun onStart() {
         super.onStart()
         if(mAuth.currentUser==null){
-            startActivity(Intent(this, LoginActivity::class.java))
+            val intent=Intent(this, LoginActivity::class.java)
+            intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
         }
+        else if(mAuth.currentUser!!.isEmailVerified.not()){
+            Toast.makeText(this, "Please verify Your Email ", Toast.LENGTH_LONG).show()
+            val intent=Intent(this,CheckingVerify::class.java)
+            intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+            startActivity(intent)
+        }
+
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {

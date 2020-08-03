@@ -12,6 +12,7 @@ import android.util.Log
 import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
+import com.example.letstalk.CheckingVerify
 import com.example.letstalk.MainActivity
 import com.example.letstalk.R
 import com.example.letstalk.modelUser.User
@@ -80,22 +81,35 @@ class Registration : AppCompatActivity() {
                         Toast.makeText(this, "email or password is empty", Toast.LENGTH_SHORT).show()
                     }
 
-            FirebaseAuth.getInstance().createUserWithEmailAndPassword(emailUser, passwordUser)
-                .addOnCompleteListener {
-                    if (it.isSuccessful) {
+                        FirebaseAuth.getInstance()
+                            .createUserWithEmailAndPassword(emailUser, passwordUser)
+                            .addOnCompleteListener {
+                                if (it.isSuccessful) {
 
-                        Log.d("RegisterActivity","save image to firebase storage")
-                        uploadImageToFirebase()
+                                    FirebaseAuth.getInstance().currentUser!!.sendEmailVerification()
+                                        .addOnCompleteListener {task->
+                                            if(task.isSuccessful){
+                                                Toast.makeText(this, "Verification Email has been send Please verify to continue", Toast.LENGTH_LONG).show()
+                                                uploadImageToFirebase()
+                                            }
+                                        }
+                                        .addOnFailureListener {
+                                            Toast.makeText(this, "Please check email and try again", Toast.LENGTH_LONG).show()
+                                            progressBar.visibility = View.GONE
+                                            register_button.isEnabled = true
+                                        }
+
+                                } else {
+                                    Toast.makeText(this, "Fail to Register", Toast.LENGTH_LONG)
+                                        .show()
+                                    progressBar.visibility = View.GONE
+                                    register_button.isEnabled = true
+                                    return@addOnCompleteListener
+                                }
+                            }
                     }
-                    else
-                    {
-                        Toast.makeText(this, "Fail to Register", Toast.LENGTH_LONG).show()
-                        progressBar.visibility=View.GONE
-                        register_button.isEnabled=true
-                         return@addOnCompleteListener
-                    }
-                }
-        }
+
+
 
 
         private fun uploadImageToFirebase(){
@@ -108,10 +122,9 @@ class Registration : AppCompatActivity() {
                 .addOnSuccessListener {
                     Toast.makeText(this, "Image uploaded successfully", Toast.LENGTH_SHORT).show()
 
-                    ref.downloadUrl.addOnSuccessListener {
-                        Log.d("RegisterActivity","$it")
-
-                        saveToFirebase(it.toString())
+                        ref.downloadUrl.addOnSuccessListener {
+                            Log.d("RegisterActivity","$it")
+                            saveToFirebase(it.toString())
                         }
                     }
 
@@ -133,9 +146,7 @@ class Registration : AppCompatActivity() {
                     progressBar.visibility=View.GONE
                     Log.d("RegisterActivity","finially save the user")
 
-                    // starting main activity
-                    val intent=Intent(this,MainActivity::class.java)
-                    intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    val intent=Intent(this,CheckingVerify::class.java)
                     startActivity(intent)
                 }
                 .addOnFailureListener {
@@ -176,6 +187,8 @@ class Registration : AppCompatActivity() {
                 else->super.onRequestPermissionsResult(requestCode, permissions, grantResults)
         }
     }
+
+
 
 }
 
