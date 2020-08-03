@@ -4,7 +4,7 @@
     <item android:id="@+id/new_messages"
     android:title="New message"
         android:icon="@drawable/ic_postal"
-        app:showAsAction="ifRoom"
+
         android:iconTint="@color/white"
         >
     </item>
@@ -13,8 +13,10 @@
         android:title="Sign out"
         android:iconTint="@color/white"
         android:icon="@drawable/ic_logout"
-
-        app:showAsAction="ifRoom">
+        >
 
     </item>
+    <item android:id="@+id/About"
+        android:title="About Developer"
+        ></item>
 </menu>

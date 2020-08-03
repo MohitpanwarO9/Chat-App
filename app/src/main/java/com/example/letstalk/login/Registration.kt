@@ -9,6 +9,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.provider.MediaStore
 import android.util.Log
+import android.view.View
 import android.widget.Toast
 import androidx.core.app.ActivityCompat
 import com.example.letstalk.MainActivity
@@ -31,6 +32,8 @@ class Registration : AppCompatActivity() {
 
         //create user account
         register_button.setOnClickListener {
+            progressBar.visibility=View.VISIBLE
+            register_button.isEnabled=false
             performRegister()
         }
         //switch to login page
@@ -87,6 +90,8 @@ class Registration : AppCompatActivity() {
                     else
                     {
                         Toast.makeText(this, "Fail to Register", Toast.LENGTH_LONG).show()
+                        progressBar.visibility=View.GONE
+                        register_button.isEnabled=true
                          return@addOnCompleteListener
                     }
                 }
@@ -112,6 +117,8 @@ class Registration : AppCompatActivity() {
 
                 .addOnFailureListener {
                     Toast.makeText(this, "fail to upload ", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility=View.GONE
+                    register_button.isEnabled=true
                 }
 
         }
@@ -123,12 +130,18 @@ class Registration : AppCompatActivity() {
             val user= User(uid,Ed_Username_regist.text.toString(),Ed_Email_regist.text.toString(),profileURl)
             ref.setValue(user)
                 .addOnSuccessListener {
+                    progressBar.visibility=View.GONE
                     Log.d("RegisterActivity","finially save the user")
 
                     // starting main activity
                     val intent=Intent(this,MainActivity::class.java)
                     intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
+                }
+                .addOnFailureListener {
+                    Toast.makeText(this, "fail to save User ", Toast.LENGTH_SHORT).show()
+                    progressBar.visibility=View.GONE
+                    register_button.isEnabled=true
                 }
         }
 

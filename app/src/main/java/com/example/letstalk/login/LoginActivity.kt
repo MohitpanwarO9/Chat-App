@@ -3,6 +3,7 @@ package com.example.letstalk.login
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import android.widget.Toast
 import com.example.letstalk.MainActivity
 import com.example.letstalk.R
@@ -15,10 +16,14 @@ class LoginActivity : AppCompatActivity() {
         setContentView(R.layout.activity_login)
         //login button
         Bt_login.setOnClickListener {
+            progress_login.visibility= View.VISIBLE
+            Bt_login.isEnabled=false
+            back_register_editText.isEnabled=false
             performLogin()
         }
         //back to registration page
         back_register_editText.setOnClickListener{
+
             startActivity(Intent(this, Registration::class.java))
             finish()
         }
@@ -37,6 +42,9 @@ class LoginActivity : AppCompatActivity() {
         FirebaseAuth.getInstance().signInWithEmailAndPassword(emailLogin,passwordLogin)
             .addOnCompleteListener {
                 if(it.isSuccessful){
+                    progress_login.visibility=View.GONE
+                    Bt_login.isEnabled=true
+                    back_register_editText.isEnabled=true
                     val user = FirebaseAuth.getInstance().currentUser
                     val intent=Intent(this, MainActivity::class.java)
                     intent.putExtra("user",user)
@@ -45,6 +53,9 @@ class LoginActivity : AppCompatActivity() {
                 }
                 else
                 {
+                    progress_login.visibility=View.GONE
+                    Bt_login.isEnabled=true
+                    back_register_editText.isEnabled=true
                     Toast.makeText(this, "Fail to login", Toast.LENGTH_LONG).show()
                     return@addOnCompleteListener
                 }

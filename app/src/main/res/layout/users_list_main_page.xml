@@ -4,7 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginTop="6dp"
-    android:background="@drawable/round_text_field"
     xmlns:app="http://schemas.android.com/apk/res-auto">
 
 
@@ -12,7 +11,7 @@
         android:id="@+id/circleImageView"
         android:layout_width="60dp"
         android:layout_height="60dp"
-        android:layout_marginStart="32dp"
+        android:layout_marginStart="16dp"
         app:civ_border_color="@color/login_blue_d"
         app:civ_border_width="1dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -41,6 +40,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginBottom="16dp"
         android:textSize="15sp"
+        android:textColor="#958F8F"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toEndOf="@+id/circleImageView"
         app:layout_constraintTop_toBottomOf="@+id/Username_mainActivity"

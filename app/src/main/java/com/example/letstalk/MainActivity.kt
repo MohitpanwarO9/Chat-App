@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuItem
+import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.letstalk.login.LoginActivity
 import com.example.letstalk.messages.MainChat
 import com.example.letstalk.messages.NewMessage
@@ -32,7 +33,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
         recycleView_mainActivity.adapter=adapter
-
+        recycleView_mainActivity.addItemDecoration(
+            DividerItemDecoration(this,
+                DividerItemDecoration.VERTICAL)
+        )
         //init auth Firebase
         mAuth= FirebaseAuth.getInstance()
 
@@ -112,6 +116,11 @@ class MainActivity : AppCompatActivity() {
                 val intent=Intent(this,LoginActivity::class.java)
                 intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                 startActivity(intent)
+            }
+            R.id.About->{
+                val about=About()
+                val aboutFr=supportFragmentManager
+                about.show(aboutFr,"about_me")
             }
         }
         return super.onOptionsItemSelected(item)
