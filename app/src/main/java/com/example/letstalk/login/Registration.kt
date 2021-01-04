@@ -85,19 +85,20 @@ class Registration : AppCompatActivity() {
                             .createUserWithEmailAndPassword(emailUser, passwordUser)
                             .addOnCompleteListener {
                                 if (it.isSuccessful) {
+                                    uploadImageToFirebase()
 
-                                    FirebaseAuth.getInstance().currentUser!!.sendEmailVerification()
-                                        .addOnCompleteListener {task->
-                                            if(task.isSuccessful){
-                                                Toast.makeText(this, "Verification Email has been send Please verify to continue", Toast.LENGTH_LONG).show()
-                                                uploadImageToFirebase()
-                                            }
-                                        }
-                                        .addOnFailureListener {
-                                            Toast.makeText(this, "Please check email and try again", Toast.LENGTH_LONG).show()
-                                            progressBar.visibility = View.GONE
-                                            register_button.isEnabled = true
-                                        }
+//                                    FirebaseAuth.getInstance().currentUser!!.sendEmailVerification()
+//                                        .addOnCompleteListener {task->
+//                                            if(task.isSuccessful){
+//                                                Toast.makeText(this, "Verification Email has been send Please verify to continue", Toast.LENGTH_LONG).show()
+//                                                uploadImageToFirebase()
+//                                            }
+//                                        }
+//                                        .addOnFailureListener {
+//                                            Toast.makeText(this, "Please check email and try again", Toast.LENGTH_LONG).show()
+//                                            progressBar.visibility = View.GONE
+//                                            register_button.isEnabled = true
+//                                        }
 
                                 } else {
                                     Toast.makeText(this, "Fail to Register", Toast.LENGTH_LONG)
@@ -146,7 +147,8 @@ class Registration : AppCompatActivity() {
                     progressBar.visibility=View.GONE
                     Log.d("RegisterActivity","finially save the user")
 
-                    val intent=Intent(this,CheckingVerify::class.java)
+                    val intent=Intent(this,MainActivity::class.java)
+                    intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
                     startActivity(intent)
                 }
                 .addOnFailureListener {

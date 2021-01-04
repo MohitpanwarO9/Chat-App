@@ -109,12 +109,12 @@ class MainActivity : AppCompatActivity() {
             intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
             startActivity(intent)
         }
-        else if(mAuth.currentUser!!.isEmailVerified.not()){
-            Toast.makeText(this, "Please verify Your Email ", Toast.LENGTH_LONG).show()
-            val intent=Intent(this,CheckingVerify::class.java)
-            intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
-            startActivity(intent)
-        }
+//        else if(mAuth.currentUser!!.isEmailVerified.not()){
+//            Toast.makeText(this, "Please verify Your Email ", Toast.LENGTH_LONG).show()
+//            val intent=Intent(this,CheckingVerify::class.java)
+//            intent.flags=Intent.FLAG_ACTIVITY_CLEAR_TASK.or(Intent.FLAG_ACTIVITY_NEW_TASK)
+//            startActivity(intent)
+//        }
 
     }
 
