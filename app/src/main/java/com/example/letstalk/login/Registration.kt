@@ -77,8 +77,12 @@ class Registration : AppCompatActivity() {
             val emailUser = Ed_Email_regist.text.toString()
             val passwordUser = Ed_Password_regist.text.toString()
 
-                    if(emailUser.isEmpty()||passwordUser.isEmpty()){
-                        Toast.makeText(this, "email or password is empty", Toast.LENGTH_SHORT).show()
+                    if(emailUser.isEmpty()||passwordUser.isEmpty()||selectedImgUri==null){
+                        Toast.makeText(this, "Email, password or Image is empty", Toast.LENGTH_SHORT).show()
+
+                        progressBar.visibility = View.GONE
+                        register_button.isEnabled = true
+                        return
                     }
 
                         FirebaseAuth.getInstance()
@@ -114,7 +118,9 @@ class Registration : AppCompatActivity() {
 
 
         private fun uploadImageToFirebase(){
-            if(selectedImgUri==null) return
+            if(selectedImgUri==null) {
+                error("Please select any image")
+            }
 
             val filename=UUID.randomUUID().toString()
             val ref =FirebaseStorage.getInstance().getReference("/image/$filename")

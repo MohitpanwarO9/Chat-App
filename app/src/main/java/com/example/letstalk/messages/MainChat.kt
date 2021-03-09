@@ -77,7 +77,9 @@ class MainChat : AppCompatActivity() {
 
     private fun sendMessage(){
         val text=enterMessage_mainChat.text.toString()
-
+        if(text.isEmpty()){
+            return
+        }
         val fromId=FirebaseAuth.getInstance().uid
 
         val toId=userIn!!.uid
